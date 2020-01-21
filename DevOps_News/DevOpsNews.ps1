@@ -9,4 +9,4 @@ $sep = '&amp'
 $out = $string -split "/&amp"
 
 $url = $out[0].Split("/url?q=")
-Start-Process
+Start-Process $url
