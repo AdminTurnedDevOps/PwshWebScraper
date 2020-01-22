@@ -1,8 +1,20 @@
 #Still in progress
 
+$year = "2020"
+$microsoftDevOps = Invoke-WebRequest -Uri "https://devblogs.microsoft.com/devops/$year/"
+$out = $microsoftDevOps.Links.href | select -skip 80 | Sort-Object | Get-Unique
+
+Foreach($link in $out) {
+    Start-Process $link
+}
+
+
+######################################################
+
 # Testing a loop to search for specific URLs for DevOps blog
 $microsoftDevOps = Invoke-WebRequest -Uri "https://www.google.com/search?hl=en&q=devops+in+microsoft+news"
 $out = $microsoftDevOps.Links.href
+
 foreach ($link in $out) {
     if ("*zdnet" -like $link) {
         Write-Output $link
@@ -10,7 +22,7 @@ foreach ($link in $out) {
 }
 
 
-
+##################################################################
 
 Foreach($link in $out) {
     $string = $link
