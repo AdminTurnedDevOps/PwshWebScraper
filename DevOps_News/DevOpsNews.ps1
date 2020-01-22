@@ -1,8 +1,15 @@
 #Still in progress
 
+# Testing a loop to search for specific URLs for DevOps blog
 $microsoftDevOps = Invoke-WebRequest -Uri "https://www.google.com/search?hl=en&q=devops+in+microsoft+news"
 $out = $microsoftDevOps.Links.href
-$out -replace "(http://.www.google.com*, http://.www.google.com/*, /search?hl*)",""
+foreach ($link in $out) {
+    if ("*zdnet" -like $link) {
+        Write-Output $link
+    }
+}
+
+
 
 
 Foreach($link in $out) {
